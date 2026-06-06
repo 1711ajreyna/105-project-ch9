@@ -1,0 +1,106 @@
+//
+//  SpecialistView.swift
+//  105-project-ch9
+//
+//  Created by Andrew Reyna on 6/3/26.
+//
+
+import SwiftUI
+
+struct SpecialistView: View {
+    var body: some View {
+        // Navigation container for the screen
+        NavigationStack {
+            
+            // Background color
+            ZStack {
+                Color("MainColor")
+                    .ignoresSafeArea()
+                
+                // Main Stack
+                VStack(spacing:30) {
+                    
+                    //Mark: - Title & Search Box
+                    VStack(spacing:30){
+                        
+                        Text("Find Your Beauty Specialist!")
+                            .font(.largeTitle.bold())
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        
+                        TextField("Lashes...", text: .constant(""))
+                            .padding()
+                            .background(.white)
+                            .cornerRadius(4)
+                            .padding(.horizontal, 40)
+                    }
+                    
+                    //MARK: - Sections: Categories & Top Specialist
+                    VStack(spacing:37){
+                        
+                        // Categories
+                        VStack(spacing:20){
+                            
+                            HStack{
+                                Text("Categories")
+                                    .font(.title2.bold())
+                                
+                                Spacer()
+                                
+                                NavigationLink(destination: CategoriesView()){
+                                    Text("See all")
+                                        .font(.headline)
+                                        .foregroundStyle(Color("MainColor"))
+                                }
+                            }
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack(spacing:20){
+                                    
+                                    CategoryCardView(icon: "eye", title: "Lashes")
+                                    
+                                    CategoryCardView(icon: "eyebrow", title: "Eyebrows")
+                                    
+                                    CategoryCardView(icon: "hand.raised", title: "nails")
+                                    
+                                    CategoryCardView(icon: "face.smiling.inverse", title: "Facial")
+                                    
+
+                                    
+                                }
+                                
+                            }
+                        } // END: Categories
+                        .padding(.horizontal,30)
+                        .padding(.vertical,20)
+                        
+                        // Top Specialist
+                        VStack(alignment:.leading, spacing:20){
+                                Text("Top Specialists")
+                                    .font(.title2.bold())
+                            ScrollView(.vertical, showsIndicators: false) {
+                                    VStack(spacing: 14) {
+                                        SpecialistCardView(name: "Maria Johnson", specialty: "Lash Technician", priceRange: "$80–$120", rating: 4.8)
+                                        SpecialistCardView(name: "Sophie Lee",    specialty: "Nail Artist",     priceRange: "$50–$90",  rating: 4.5)
+                                        SpecialistCardView(name: "Priya Patel",   specialty: "Hair Stylist",    priceRange: "$100–$200",rating: 5.0)
+                                        SpecialistCardView(name: "Jane Smith",    specialty: "Brow Specialist", priceRange: "$60–$100", rating: 4.2)
+                                        SpecialistCardView(name: "Lisa Chen",     specialty: "Skin Care",       priceRange: "$90–$150", rating: 4.7)
+                                    }
+                                    .padding(.horizontal, 20)
+                                    .padding(.bottom, 30)
+                                }
+                            }
+                            .padding(.vertical,10)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color("SurfaceColor"))
+                    
+                } //End: VStack - Main Stack
+            } //End: ZStack - Background Color
+        } //End: NavigationStack
+    } //End: body
+}  //End: specialistView
+
+#Preview {
+    SpecialistView()
+}
