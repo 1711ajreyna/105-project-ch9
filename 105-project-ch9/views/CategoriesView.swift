@@ -9,16 +9,25 @@ import SwiftUI
 
 struct CategoriesView: View {
     var body: some View {
-        VStack(spacing: 30) {
-            Image(systemName: "progress.indicator")
-                .font(.largeTitle.bold())
+        
+        ZStack {
+            // Background
+            Color("MainColor")
+                .ignoresSafeArea()
             
-            Text("All Categories")
-                .font(.largeTitle)
-            
-            Text("Under Construction...")
-                .foregroundStyle(.gray)
-            
+            VStack(spacing: 30) {
+                
+                Image(systemName: "progress.indicator")
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(.white)        // white icon
+                
+                Text("All Categories")
+                    .font(.largeTitle)
+                    .foregroundStyle(.white)        // white title
+                
+                Text("Under Construction...")
+                    .foregroundStyle(.white.opacity(0.7))  // soft white subtitle
+            }
         }
         .navigationTitle("All Categories")
         .navigationBarTitleDisplayMode(.inline)
@@ -26,5 +35,7 @@ struct CategoriesView: View {
 }
 
 #Preview {
-    CategoriesView()
+    NavigationStack {
+        CategoriesView()
+    }
 }

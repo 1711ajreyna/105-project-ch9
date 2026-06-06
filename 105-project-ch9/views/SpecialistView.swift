@@ -65,7 +65,7 @@ struct SpecialistView: View {
                                     
                                     CategoryCardView(icon: "face.smiling.inverse", title: "Facial")
                                     
-
+                                    
                                     
                                 }
                                 
@@ -76,31 +76,33 @@ struct SpecialistView: View {
                         
                         // Top Specialist
                         VStack(alignment:.leading, spacing:20){
-                                Text("Top Specialists")
-                                    .font(.title2.bold())
+                            Text("Top Specialists")
+                                .font(.title2.bold())
                             ScrollView(.vertical, showsIndicators: false) {
-                                    VStack(spacing: 14) {
-                                        SpecialistCardView(name: "Maria Johnson", specialty: "Lash Technician", priceRange: "$80–$120", rating: 4.8)
-                                        SpecialistCardView(name: "Sophie Lee",    specialty: "Nail Artist",     priceRange: "$50–$90",  rating: 4.5)
-                                        SpecialistCardView(name: "Priya Patel",   specialty: "Hair Stylist",    priceRange: "$100–$200",rating: 5.0)
-                                        SpecialistCardView(name: "Jane Smith",    specialty: "Brow Specialist", priceRange: "$60–$100", rating: 4.2)
-                                        SpecialistCardView(name: "Lisa Chen",     specialty: "Skin Care",       priceRange: "$90–$150", rating: 4.7)
-                                    }
-                                    .padding(.horizontal, 20)
-                                    .padding(.bottom, 30)
+                                VStack(spacing: 14) {
+                                    SpecialistCardView(specialist: Specialist(name: "Maria Johnson", specialty: "Lash Technician", minPrice: 80, maxPrice: 120, rating: 4.8, image: "person.crop.circle.fill"))
+                                    
+                                    SpecialistCardView(specialist: Specialist(name: "Sophie Lee", specialty: "Nail Artist", minPrice: 50, maxPrice: 90, rating: 4.5, image: "person.crop.circle.fill"))
+                                    
+                                    SpecialistCardView(specialist: Specialist(name: "Priya Patel", specialty: "Hair Stylist", minPrice: 100, maxPrice: 200, rating: 5.0, image: "person.crop.circle.fill"))
+                                    
+                                    SpecialistCardView(specialist: Specialist(name: "Jane Smith", specialty: "Brow Specialist", minPrice: 60, maxPrice: 100, rating: 4.2, image: "person.crop.circle.fill"))
+                                    
+                                    SpecialistCardView(specialist: Specialist(name: "Lisa Chen", specialty: "Skin Care", minPrice: 90, maxPrice: 150, rating: 4.7, image: "person.crop.circle.fill"))                                    .padding(.horizontal, 20)
+                                        .padding(.bottom, 30)
                                 }
                             }
                             .padding(.vertical,10)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("SurfaceColor"))
-                    
-                } //End: VStack - Main Stack
-            } //End: ZStack - Background Color
-        } //End: NavigationStack
-    } //End: body
-}  //End: specialistView
-
-#Preview {
-    SpecialistView()
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("SurfaceColor"))
+                        
+                    } //End: VStack - Main Stack
+                } //End: ZStack - Background Color
+            } //End: NavigationStack
+        } //End: body
+    }  //End: specialistView
 }
+    #Preview {
+        SpecialistView()
+    }

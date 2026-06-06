@@ -9,48 +9,49 @@ import SwiftUI
 
 struct SpecialistCardView: View {
     
-    var name: String = "Specialist Name"
-    var specialty: String = "Specialty"
-    var priceRange: String = "$xxx-$xxx"
-    var rating: Double = 4.5
+    // MARK: - Property
+    var specialist: Specialist
     
     var body: some View {
         HStack(spacing: 14) {
             
-            // MARK: - Avatar
-            Image(systemName: "person.crop.circle.fill")
+            // MARK: - Specialist Icon
+            Image(systemName: specialist.image)
                 .resizable()
-                .scaledToFill()
-                .frame(width: 54, height: 54)
-                .foregroundStyle(Color("MainColor").opacity(0.3))
+                .scaledToFit()
+                .frame(width: 40, height: 40)
                 .clipShape(Circle())
+                .foregroundStyle(Color("MainColor"))
             
-            // MARK: - Info
+            // MARK: - Specialist Information
             VStack(alignment: .leading, spacing: 4) {
-                Text(name)
-                    .font(.headline)
-                    .foregroundStyle(.black)
                 
-                Text(specialty)
-                    .font(.subheadline)
+                // Specialist Name
+                Text(specialist.name)
+                    .font(.headline)
                     .foregroundStyle(Color("MainColor"))
                 
-                Text(priceRange)
+                // Specialty
+                Text(specialist.specialty)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                
+                // Price Range
+                Text("$\(specialist.minPrice, specifier: "%.2f") - $\(specialist.maxPrice, specifier: "%.2f")")
+                    .font(.footnote)
+                    .bold()
             }
             
             Spacer()
             
             // MARK: - Rating + Book Button
-            VStack(alignment: .trailing, spacing: 10) {
+            VStack(alignment: .center) {
                 
                 // Star Rating
                 HStack(spacing: 3) {
                     Image(systemName: "star.fill")
                         .font(.caption)
                         .foregroundStyle(.yellow)
-                    Text(String(format: "%.1f", rating))
+                    Text(String(format: "%.1f", specialist.rating))
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.black)
                 }
@@ -76,14 +77,34 @@ struct SpecialistCardView: View {
 }
 
 #Preview {
-    VStack(spacing: 14) {
-        SpecialistCardView(
-            name: "Maria Johnson",
-            specialty: "Lash Technician",
-            priceRange: "$80–$120",
-            rating: 4.8
-        )
-
+    NavigationStack {
+        VStack(spacing: 14) {
+            SpecialistCardView(specialist: Specialist(
+                name: "Fernanda",
+                specialty: "Nails",
+                minPrice: 10.00,
+                maxPrice: 12.00,
+                rating: 4.5,
+                image: "person.crop.circle.fill"
+            ))
+            SpecialistCardView(specialist: Specialist(
+                name: "Maria Johnson",
+                specialty: "Lash Technician",
+                minPrice: 80.00,
+                maxPrice: 120.00,
+                rating: 4.8,
+                image: "person.crop.circle.fill"
+            ))
+            SpecialistCardView(specialist: Specialist(
+                name: "Sophie Lee",
+                specialty: "Nail Artist",
+                minPrice: 50.00,
+                maxPrice: 90.00,
+                rating: 4.5,
+                image: "person.crop.circle.fill"
+            ))
+        }
+        .padding()
+        .background(Color(.systemGroupedBackground))
     }
-    .padding()
 }
