@@ -25,9 +25,11 @@ struct CategoryCardView: View {
                 .padding()
             Text(title)
                 .font(.headline)
+                .padding(.bottom, 8)
+                Spacer()
 
         }
-        .frame(maxWidth:100, maxHeight:100)
+        .frame(maxWidth:100, maxHeight:120)
         .background(.white)
         .cornerRadius(8)
     }
