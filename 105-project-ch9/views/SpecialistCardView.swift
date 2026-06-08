@@ -38,10 +38,11 @@ struct SpecialistCardView: View {
             
             // MARK: - Specialist Profile Image
             
-            Image(systemName: specialist.image)
+            Image(specialist.image)
                 .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
                 .foregroundStyle(Color("MainColor"))
             
             
@@ -183,7 +184,7 @@ struct SpecialistCardView: View {
                     minPrice: 10.00,
                     maxPrice: 12.00,
                     rating: 4.5,
-                    image: "person.crop.circle.fill"
+                    image: "image1"
                 )
             )
             
@@ -194,18 +195,18 @@ struct SpecialistCardView: View {
                     minPrice: 80.00,
                     maxPrice: 120.00,
                     rating: 4.8,
-                    image: "person.crop.circle.fill"
+                    image: "image2"
                 )
             )
             
             SpecialistCardView(
                 specialist: Specialist(
                     name: "Sophie Lee",
-                    specialty: "Nail Artist",
+                    specialty: "image3.jpg",
                     minPrice: 50.00,
                     maxPrice: 90.00,
                     rating: 4.5,
-                    image: "person.crop.circle.fill"
+                    image: "image3"
                 )
             )
             

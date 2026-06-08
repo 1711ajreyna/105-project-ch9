@@ -80,15 +80,15 @@ struct SpecialistView: View {
                                 .font(.title2.bold())
                             ScrollView(.vertical, showsIndicators: false) {
                                 VStack(spacing: 14) {
-                                    SpecialistCardView(specialist: Specialist(name: "Maria Johnson", specialty: "Lash Technician", minPrice: 80, maxPrice: 120, rating: 4.8, image: "person.crop.circle.fill"))
+                                    SpecialistCardView(specialist: Specialist(name: "Maria Johnson", specialty: "Lash Technician", minPrice: 80, maxPrice: 120, rating: 4.8, image: "image1"))
                                     
-                                    SpecialistCardView(specialist: Specialist(name: "Sophie Lee", specialty: "Nail Artist", minPrice: 50, maxPrice: 90, rating: 4.5, image: "person.crop.circle.fill"))
+                                    SpecialistCardView(specialist: Specialist(name: "Sophie Lee", specialty: "Nail Artist", minPrice: 50, maxPrice: 90, rating: 4.5, image: "image2"))
                                     
-                                    SpecialistCardView(specialist: Specialist(name: "Priya Patel", specialty: "Hair Stylist", minPrice: 100, maxPrice: 200, rating: 5.0, image: "person.crop.circle.fill"))
+                                    SpecialistCardView(specialist: Specialist(name: "Priya Patel", specialty: "Hair Stylist", minPrice: 100, maxPrice: 200, rating: 5.0, image: "image3"))
                                     
-                                    SpecialistCardView(specialist: Specialist(name: "Jane Smith", specialty: "Brow Specialist", minPrice: 60, maxPrice: 100, rating: 4.2, image: "person.crop.circle.fill"))
+                                    SpecialistCardView(specialist: Specialist(name: "Jane Smith", specialty: "Brow Specialist", minPrice: 60, maxPrice: 100, rating: 4.2, image: "image4"))
                                     
-                                    SpecialistCardView(specialist: Specialist(name: "Lisa Chen", specialty: "Skin Care", minPrice: 90, maxPrice: 150, rating: 4.7, image: "person.crop.circle.fill"))                                    .padding(.horizontal, 20)
+                                    SpecialistCardView(specialist: Specialist(name: "Lisa Chen", specialty: "Skin Care", minPrice: 90, maxPrice: 150, rating: 4.7, image: "image5"))                           .padding(.horizontal, 20)
                                         .padding(.bottom, 30)
                                 }
                             }
