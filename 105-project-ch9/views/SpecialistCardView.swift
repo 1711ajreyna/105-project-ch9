@@ -45,7 +45,6 @@ struct SpecialistCardView: View {
                 .clipShape(Circle())
                 .foregroundStyle(Color("MainColor"))
             
-            
             // MARK: - Specialist Information
             
             VStack(alignment: .leading, spacing: 4) {
@@ -127,13 +126,13 @@ struct SpecialistCardView: View {
             } // END - VStack (Favorite Heart, Rating & Book Button)
             
         } // END - HStack (Specialist Card Content)
-        
+        .accessibilityLabel("\(specialist.name), \(specialist.specialty)")
+        .accessibilityHint("Price range is \(specialist.minPrice, specifier: "%.2f") to \(specialist.maxPrice, specifier: "%.2f") dollars. Rating is \(specialist.rating, specifier: "%.1f") out of 5 stars. Book an appointment by tapping the Book button, or double tap the card to favorite this specialist.")
         
         // MARK: - Double Tap Gesture
         
         // Makes the entire card respond to a double tap.
-        // Similar to Instagram where users can double-tap
-        // content to like or favorite it.
+
         .contentShape(Rectangle())
         .onTapGesture(count: 2) {
             
@@ -154,14 +153,7 @@ struct SpecialistCardView: View {
         
         // Rounded corners
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        
-        // Shadow effect adds depth
-        .shadow(
-            color: Color("MainColor").opacity(0.1),
-            radius: 10,
-            x: 0,
-            y: 4
-        )
+
         
     } // END - body
     

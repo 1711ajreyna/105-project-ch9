@@ -29,9 +29,13 @@ struct CategoryCardView: View {
                 Spacer()
 
         }
+        .padding()
         .frame(maxWidth:100, maxHeight:120)
         .background(.white)
         .cornerRadius(8)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(title) Category")
+        .accessibilityHint("Shows \(title) Specialist")
     }
 }
 
