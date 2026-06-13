@@ -9,7 +9,7 @@ import Foundation
 
 class Specialist: Identifiable {
     
-    // Properties
+    // MARK: - Properties
     let id = UUID()          // add this line for Identifiable
     var name: String
     var specialty: String
@@ -17,14 +17,22 @@ class Specialist: Identifiable {
     var maxPrice: Double
     var rating: Double
     var image: String
+    var description: String
     
-    // Initializer
-    init(name: String, specialty: String, minPrice: Double, maxPrice: Double, rating: Double, image: String) {
+    // MARK: -Initializer
+    init(name: String,
+         specialty: String,
+         minPrice: Double,
+         maxPrice: Double,
+         rating: Double,
+         image: String,
+         description: String = "") {
         self.name = name
         self.specialty = specialty
         self.minPrice = minPrice
         self.maxPrice = maxPrice
         self.rating = rating
         self.image = image
+        self.description = description
     }
 }

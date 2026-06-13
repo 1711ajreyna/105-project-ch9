@@ -17,16 +17,11 @@ struct SpecialistCardView: View {
     // MARK: - State Properties
     
     // Tracks whether this specialist is currently favorited.
-    // SwiftUI automatically refreshes the UI whenever this value changes.
     @State private var isFavorite = false
     
-    
-    // MARK: - Functions
-    
-    // Called whenever the user favorites or unfavorites a specialist.
-    func toggleFavorite() {
-        isFavorite.toggle()
-    } // END - toggleFavorite()
+    // Tracks whether the specialist description is expanded or collapsed.
+    // When false, only two lines of the description will show.
+    @State private var isExpanded = false
     
     
     // MARK: - Body
@@ -45,6 +40,7 @@ struct SpecialistCardView: View {
                 .clipShape(Circle())
                 .foregroundStyle(Color("MainColor"))
             
+            
             // MARK: - Specialist Information
             
             VStack(alignment: .leading, spacing: 4) {
@@ -62,6 +58,30 @@ struct SpecialistCardView: View {
                 Text("$\(specialist.minPrice, specifier: "%.2f") - $\(specialist.maxPrice, specifier: "%.2f")")
                     .font(.footnote)
                     .bold()
+                
+                
+                // MARK: - Specialist Description
+                
+                // Shows only two lines when collapsed.
+                // Shows the full description when expanded.
+                Text(specialist.description)
+                    .font(.subheadline.italic())
+                    .foregroundStyle(.secondary)
+                    .lineLimit(isExpanded ? nil : 2)
+                
+                
+                // MARK: - Read More / Read Less Tap Gesture
+                
+                // Tapping this text expands or collapses the description.
+                Text(isExpanded ? "Read Less" : "Read More...")
+                    .font(.caption)
+                    .italic()
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        
+                        isExpanded.toggle()
+                        
+                    } // END - Read More / Read Less Tap Gesture
                 
             } // END - VStack (Specialist Information)
             
@@ -83,13 +103,14 @@ struct SpecialistCardView: View {
                 Image(systemName: isFavorite ? "heart.fill" : "heart")
                     .font(.title3)
                     .foregroundStyle(isFavorite ? .red : .gray)
-                    
+                    .scaleEffect(isFavorite ? 1.2 : 1)
+                
                     // Single Tap Gesture
                     // Tapping the heart directly will
                     // favorite or unfavorite the specialist.
                     .onTapGesture {
                         
-                        toggleFavorite()
+                        isFavorite.toggle()
                         
                     } // END - Heart Tap Gesture
                 
@@ -126,21 +147,23 @@ struct SpecialistCardView: View {
             } // END - VStack (Favorite Heart, Rating & Book Button)
             
         } // END - HStack (Specialist Card Content)
-        .accessibilityLabel("\(specialist.name), \(specialist.specialty)")
-        .accessibilityHint("Price range is \(specialist.minPrice, specifier: "%.2f") to \(specialist.maxPrice, specifier: "%.2f") dollars. Rating is \(specialist.rating, specifier: "%.1f") out of 5 stars. Book an appointment by tapping the Book button, or double tap the card to favorite this specialist.")
+        
         
         // MARK: - Double Tap Gesture
         
         // Makes the entire card respond to a double tap.
-
         .contentShape(Rectangle())
         .onTapGesture(count: 2) {
             
-            toggleFavorite()
-            
-            print("\(specialist.name) favorited by double tap")
+            isFavorite.toggle()
             
         } // END - Double Tap Gesture
+        
+        
+        // MARK: - Accessibility
+        
+        .accessibilityLabel("\(specialist.name), \(specialist.specialty)")
+        .accessibilityHint("Price range is \(specialist.minPrice, specifier: "%.2f") to \(specialist.maxPrice, specifier: "%.2f") dollars. Rating is \(specialist.rating, specifier: "%.1f") out of 5 stars. Tap Read More to expand the description. Book an appointment by tapping the Book button, or double tap the card to favorite this specialist.")
         
         
         // MARK: - Card Styling
@@ -153,7 +176,6 @@ struct SpecialistCardView: View {
         
         // Rounded corners
         .clipShape(RoundedRectangle(cornerRadius: 16))
-
         
     } // END - body
     
@@ -176,7 +198,8 @@ struct SpecialistCardView: View {
                     minPrice: 10.00,
                     maxPrice: 12.00,
                     rating: 4.5,
-                    image: "image1"
+                    image: "image1",
+                    description: "Fernanda specializes in clean nail designs, gel polish, acrylic nails, and simple custom nail art for clients who want a polished everyday look."
                 )
             )
             
@@ -187,18 +210,20 @@ struct SpecialistCardView: View {
                     minPrice: 80.00,
                     maxPrice: 120.00,
                     rating: 4.8,
-                    image: "image2"
+                    image: "image2",
+                    description: "Maria Johnson is a lash technician who focuses on classic sets, hybrid lashes, and volume lash extensions with a comfortable appointment experience."
                 )
             )
             
             SpecialistCardView(
                 specialist: Specialist(
                     name: "Sophie Lee",
-                    specialty: "image3.jpg",
+                    specialty: "Hair Stylist",
                     minPrice: 50.00,
                     maxPrice: 90.00,
                     rating: 4.5,
-                    image: "image3"
+                    image: "image3",
+                    description: "Sophie Lee provides beauty services for clients looking for a fresh style, detailed care, and a relaxing booking experience."
                 )
             )
             
